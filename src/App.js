@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import RealtimeSymbols from "./RealtimeSymbols";
+import IBANCalculator from "./IBANCalculator";
+import { Container, AppBar, Toolbar, Button } from "@mui/material";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Container>
+        <AppBar position="static">
+          <Toolbar>
+            <Button color="inherit" component={Link} to="/">Home</Button>
+            <Button color="inherit" component={Link} to="/symbols">Realtime Symbols</Button>
+            <Button color="inherit" component={Link} to="/iban">IBAN Calculator</Button>
+          </Toolbar>
+        </AppBar>
+
+        <Routes>
+          <Route path="/" element={<h1>Welcome to the App</h1>} />
+          <Route path="/symbols" element={<RealtimeSymbols />} />
+          <Route path="/iban" element={<IBANCalculator />} />
+        </Routes>
+      </Container>
+    </Router>
   );
 }
 
